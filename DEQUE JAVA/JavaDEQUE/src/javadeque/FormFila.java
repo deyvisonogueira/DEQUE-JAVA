@@ -95,6 +95,11 @@ public class FormFila extends javax.swing.JFrame {
         btnAddLast.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         btnAddLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javadeque/add-user.png"))); // NOI18N
         btnAddLast.setText("Add Fim");
+        btnAddLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddLastActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -155,6 +160,11 @@ public class FormFila extends javax.swing.JFrame {
         btnAtenderFim.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         btnAtenderFim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javadeque/doctor-atend.png"))); // NOI18N
         btnAtenderFim.setText("Atender Fim");
+        btnAtenderFim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtenderFimActionPerformed(evt);
+            }
+        });
 
         btnMostraInvertido.setBackground(new java.awt.Color(255, 255, 255));
         btnMostraInvertido.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -256,6 +266,26 @@ public class FormFila extends javax.swing.JFrame {
     private void btnMostraInvertidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostraInvertidoActionPerformed
         mostraInvertido();
     }//GEN-LAST:event_btnMostraInvertidoActionPerformed
+
+    private void btnAddLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLastActionPerformed
+        Pessoa p = new Pessoa();
+        p.setNome(txtNome.getText());
+        p.setRg(txtRG.getText());
+        p.setIdade(Integer.parseInt(txtIdade.getText()));
+        filaDupla.addLast(p); 
+        mostra();
+        System.out.println(filaDupla);
+    }//GEN-LAST:event_btnAddLastActionPerformed
+
+    private void btnAtenderFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderFimActionPerformed
+        Pessoa p;
+        if(!filaDupla.isEmpty()){
+            p = filaDupla.removeLast();
+            txtProx.setText("Prox:"+p.getNome());
+            mostra();
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Estrutura Vazia!");    }//GEN-LAST:event_btnAtenderFimActionPerformed
 
 
     public static void main(String args[]) {
